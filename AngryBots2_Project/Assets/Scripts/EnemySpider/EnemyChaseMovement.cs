@@ -60,14 +60,14 @@ public class EnemyChaseMovement : MonoBehaviour {
 	{
 		chasingPlayer = true;
 		SetNewAnimationState();
-		agent.Resume();
+		agent.isStopped = false;
 	}
 
 	public void StopChasingPlayer()
 	{
 		chasingPlayer = false;
 		SetNewAnimationState();
-		agent.Stop();
+		agent.isStopped = true;
 	}
 
 	void SetNewAnimationState()
