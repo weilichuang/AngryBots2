@@ -34,3 +34,5 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+/AngryBots2_Project/.idea
+/AngryBots2_Project/Logs
