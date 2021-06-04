@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
-public class PlayRandomAudioClip : MonoBehaviour {
+public class PlayRandomAudioClip : MonoBehaviour
+{
+    public AudioSource audioSource;
+    public AudioClip[] audioClips;
 
-	public AudioSource audioSource;
-	public AudioClip[] audioClips;
+    void OnEnable()
+    {
+        int randomAudioClip = Random.Range(0, audioClips.Length);
 
-	void OnEnable()
-	{
-		int randomAudioClip = Random.Range(0, audioClips.Length);
+        audioSource.clip = audioClips[randomAudioClip];
 
-		audioSource.clip = audioClips[randomAudioClip];
-
-		audioSource.Play();
-	}
+        audioSource.Play();
+    }
 }

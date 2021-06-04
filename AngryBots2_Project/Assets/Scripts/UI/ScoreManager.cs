@@ -3,27 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class ScoreManager : MonoBehaviour{
+public class ScoreManager : MonoBehaviour
+{
+    public TextMeshProUGUI scoreDisplay;
+    private int currentScore;
 
-	public TextMeshProUGUI scoreDisplay;
-	private int currentScore;
+    void Start()
+    {
+        currentScore = 0;
+        UpdateUI();
+    }
 
-	void Start()
-	{
-		currentScore = 0;
-		UpdateUI();
-	}
+    public void AddToScore(int pointsGained)
+    {
+        currentScore += pointsGained;
 
-	public void AddToScore(int pointsGained)
-	{
-		currentScore += pointsGained;
+        UpdateUI();
+    }
 
-		UpdateUI();
-	}
-
-	void UpdateUI()
-	{
-		scoreDisplay.text = "Score: " + currentScore;
-	}
-
+    void UpdateUI()
+    {
+        scoreDisplay.text = "Score: " + currentScore;
+    }
 }

@@ -2,58 +2,48 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerProjectileSpawner : MonoBehaviour {
+public class PlayerProjectileSpawner : MonoBehaviour
+{
+    [Header("Input")] public KeyCode spawnKey = KeyCode.Mouse0;
 
 
-	[Header("Input")]
-	public KeyCode spawnKey = KeyCode.Mouse0;
+    [Header("Spawner Settings")] public GameObject projectilePrefab;
+    public Transform spawnPoint;
+
+    public float spawnRate;
+    private float timer;
 
 
-	[Header("Spawner Settings")]
-	public GameObject projectilePrefab;
-	public Transform spawnPoint;
-
-	public float spawnRate;
-	private float timer;
+    [Header("Particles")] public ParticleSystem spawnParticles;
 
 
-	[Header("Particles")]
-	public ParticleSystem spawnParticles;
+    [Header("Audio")] public AudioSource spawnAudioSource;
 
 
-	[Header("Audio")]
-	public AudioSource spawnAudioSource;
+    void Update()
+    {
+        timer += Time.deltaTime;
+
+        if (Input.GetKey(spawnKey) && timer >= spawnRate)
+        {
+            SpawnProjectile();
+        }
+    }
 
 
-	
-	void Update()
-	{
+    void SpawnProjectile()
+    {
+        timer = 0f;
+        Instantiate(projectilePrefab, spawnPoint.position, spawnPoint.rotation);
 
-		timer += Time.deltaTime;
+        if (spawnParticles)
+        {
+            spawnParticles.Play();
+        }
 
-		if(Input.GetKey(spawnKey) && timer >= spawnRate)
-		{
-			SpawnProjectile();
-		}
-
-	}
-	
-
-	void SpawnProjectile()
-	{
-		timer = 0f;
-		Instantiate(projectilePrefab, spawnPoint.position, spawnPoint.rotation);
-
-		if(spawnParticles)
-		{
-			spawnParticles.Play();
-		}
-
-		if(spawnAudioSource)
-		{
-			spawnAudioSource.Play();
-		}
-
-	}
-
+        if (spawnAudioSource)
+        {
+            spawnAudioSource.Play();
+        }
+    }
 }

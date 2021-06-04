@@ -23,22 +23,22 @@ public class ToggleCanvas : MonoBehaviour
 
     void Update()
     {
-       int fingerCount = 0;
+        int fingerCount = 0;
 
-       foreach(Touch touch in Input.touches)
-       {
-           if(touch.phase == TouchPhase.Began)
-           {
-               fingerCount++;
-           }
-       }
+        foreach (Touch touch in Input.touches)
+        {
+            if (touch.phase == TouchPhase.Began)
+            {
+                fingerCount++;
+            }
+        }
 
-       if(fingerCount > 0)
-       {
-           ToggleCanvasVisibility();
-       }
+        if (fingerCount > 0)
+        {
+            ToggleCanvasVisibility();
+        }
 
-        if(Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
             ToggleCanvasVisibility();
         }
